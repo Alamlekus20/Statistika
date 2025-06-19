@@ -1,0 +1,111 @@
+#observasi_kontrol_flow_iterasi.Rmd
+---
+title: "Observasi RMarkdown - Control Flow & Iterasi"
+author: "nurul aulia fahmidah"
+kelas: "komputasi statistika/B"
+nim: "19611045"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Pendahuluan
+
+Dokumen ini mengeksplorasi berbagai kontrol alur (control flow) dan metode iterasi dalam bahasa R, 
+berdasarkan materi kuliah Komputasi Statistika. Penekanan diberikan pada penggunaan fungsi `if`, `else`, `ifelse`, `switch`,
+dan struktur perulangan `for`, `while`, serta fungsi keluarga `apply`.
+
+---
+
+## 1. Penggunaan if dan else
+
+x <- 0.5
+if (x >= 0) {
+  x
+} else {
+  -x
+}
+if (x >= 0) x else -x
+
+## 2. elseif
+x <- -2
+if (x^2 < 1) {
+  x^2
+} else if (x >= 1) {
+  2*x - 1
+} else {
+  -2*x - 1
+}
+
+## 3. elseif
+
+x <- -2
+if (x^2 < 1) {
+  x^2
+} else if (x >= 1) {
+  2*x - 1
+} else {
+  -2*x - 1
+}
+
+## 4. ifelse() untuk vektor
+y <- seq(-1, 1, 0.1)
+z <- ifelse(y < 0, -1, 1)
+z
+
+## 5. ifelse() dan nilai NA
+vmv <- c(1:6, NA, NA, 9:12)
+vmv
+which(is.na(vmv))
+vmv[is.na(vmv)] <- 0
+vmv
+# Alternatif ifelse
+vmv <- c(1:6, NA, NA, 9:12)
+ifelse(is.na(vmv), 0, vmv)
+
+## 6. switch()
+x.vec <- 1:10
+type.of.summary <- "mean"
+switch(type.of.summary,
+       mean = mean(x.vec),
+       median = median(x.vec),
+       histogram = hist(x.vec),
+       "NA")
+
+## 7. Operator Boolean
+set.seed(2025)
+u.vec <- runif(10, min = -1, max = 1)
+u.vec[u.vec >= -0.5 & u.vec <= 0.5] <- 999
+u.vec
+
+## 8. Perulangan for()
+n <- 10
+log.vec <- vector(length = n, mode = "numeric")
+for (i in 1:n) {
+  log.vec[i] <- log(i)
+}
+log.vec
+
+## 9. Perulangan while
+i <- 1
+log.vec <- c()
+while (log(i) <= 2) {
+  log.vec <- c(log.vec, log(i))
+  i <- i + 1
+}
+log.vec
+
+## 10. Perulangan () function
+X <- matrix(1:24, nrow = 4, ncol = 6)
+apply(X, 1, sum)
+apply(X, 2, sum)
+apply(X, 1, sqrt)
+apply(X, 2, sqrt)
+apply(X, 1, function(x) x^2 + x)
+
+## 11. Sapply() dan tapply
+X <- matrix(1:24, nrow = 4, ncol = 6)
+apply(X, 1, sum)
+apply(X, 2, sum)
+apply(X, 1, sqrt)
+apply(X, 2, sqrt)
+apply(X, 1, function(x) x^2 + x)

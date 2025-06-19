@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cuplikan Output RMarkdown</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background-color: #f9f9f9; color: #333; }
+    h2 { color: #2c3e50; }
+    table { border-collapse: collapse; width: 60%; margin-bottom: 40px; }
+    th, td { border: 1px solid #999; padding: 8px; text-align: center; }
+    code { background-color: #f0f0f0; padding: 6px; display: block; margin-bottom: 10px; border-left: 3px solid #1abc9c; }
+    .code-block { background-color: #f4f4f4; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>Cuplikan Output RMarkdown</h1>
+  <p>Berikut adalah hasil observasi dan eksplorasi RMarkdown:</p>
+
+  <h2>📊 Histogram</h2>
+  <canvas id="histogram" width="600" height="400"></canvas>
+
+  <script>
+    const ctx = document.getElementById('histogram').getContext('2d');
+    const histogram = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['50', '60', '70', '80', '90', '100'],
+        datasets: [{
+          label: 'Frekuensi Berat Ayam',
+          data: [2, 5, 8, 4, 3, 1],
+          backgroundColor: 'skyblue',
+          borderColor: 'white',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  </script>
+
+  <h2>📋 Tabel Output apply()</h2>
+  <table>
+    <thead>
+      <tr><th>Baris</th><th>Jumlah</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Baris 1</td><td>22</td></tr>
+      <tr><td>Baris 2</td><td>58</td></tr>
+      <tr><td>Baris 3</td><td>94</td></tr>
+      <tr><td>Baris 4</td><td>130</td></tr>
+    </tbody>
+  </table>
+
+  <h2>📋 Tabel Output ifelse()</h2>
+  <table>
+    <thead>
+      <tr><th>Nilai</th><th>Keterangan</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>-2</td><td>Negatif</td></tr>
+      <tr><td>0</td><td>Positif</td></tr>
+      <tr><td>4</td><td>Positif</td></tr>
+    </tbody>
+  </table>
+
+  <h2>💡 Cuplikan Kode (Code Chunks)</h2>
+  <div class="code-block">
+    <code>x <- seq(-5, 5, 1)</code>
+    <code>ifelse(x >= 0, "Positif", "Negatif")</code>
+  </div>
+
+  <div class="code-block">
+    <code>mat <- matrix(1:24, nrow=4, ncol=6)</code>
+    <code>apply(mat, 1, sum)</code>
+  </div>
+
+</body>
+</html>
